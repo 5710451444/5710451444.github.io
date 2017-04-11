@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>Lab4</title>
+    <link rel="stylesheet" type="text/css" id="sheet" href="css/style-default/style-2.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+<script>
+$(document).ready(function() {
+	var now = new Date();
+	$('#calendar').datepicker({dateFormat: "dd/mm/yy"});
+	$("#calendar").datepicker({changeMonth: true});
+	var changeMonth = $("#calendar").datepicker( "option", "changeMonth" );
+	$("#calendar").datepicker( "option", "changeMonth", true );
+	$("#calendar").datepicker({changeYear: true});
+	var changeYear = $("#calendar").datepicker( "option", "changeYear" );
+	$("#calendar").datepicker( "option", "changeYear", true );
+	$("#calendar").datepicker({yearRange: "1980:now.getFullYear()"});
+	var yearRange = $("#calendar").datepicker( "option", "yearRange" );
+	$("#calendar").datepicker( "option", "yearRange", "1980:now.getFullYear()" );
+
+});
+$.readData = function(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			$("#image").attr("src","province/"+$('#province').val()+".png");
+			$('#out').html(this.responseText);
+			console.log(this.responseText);
+		}
+	}
+	xhttp.open("GET", "province/"+$('#province').val()+".txt", true);
+	xhttp.send();
+}
+
+$.validate = function(){
+	var fname = $('#firstname').val();
+	var lname = $('#lastname').val();
+	var bday = $('#calendar').val();
+	var pro = $('#province').val();
+	if(fname == ""){
+		alert("Please fill your firstname.");
+		return false;
+	}
+	if(lname == ""){
+		alert("Please fill your lastname.");
+		return false;
+	}
+	if(bday == ""){
+		alert("Please fill your birthday.");
+		return false;
+	}
+	if(pro == "จังหวัด"){
+		alert("Please select province.");
+		return false;
+	}
+	
+	return true;
+}
+
+$.checkType = function(){
+	var bdayA = $('#calendar').val().split("/");
+	var year = bdayA[2];
+	console.log(Date.getFullYear()); 
+}
+
+
+$(document).ready(function(){
+	$('#btnSubmit').click(function(){
+		var fname = $('#firstname').val();
+		var gender = $('input[type="radio"]:checked').val();
+		var now = new Date();
+		var yearNow = now.getFullYear();
+		var bdayA = $('#calendar').val().split("/");
+		var year = bdayA[2];
+		if($.validate() == true){
+			$('h1').html("Hello! " + fname);
+			if(gender == "Male"){
+				$('#sheet').attr("href","css/style-formens/formens.css");
+			}
+			if(gender == "Female"){
+				$('#sheet').attr("href","css/style-forwomen/forwomen.css");
+			}
+			if((yearNow - year)	< 13){
+				console.log(yearNow - year);
+				$('#sheet').attr("href","css/style-forkids/forkids.css");	
+			}
+			$.readData();
+		}
+	});
+});
+</script>
+    
+
+</head>
+
+<body onLoad="loadDoc()">
+<div class="form">
+	<h1>Hello!</h1>
+    
+    <form>
+    <hr>
+    <div class="account-type">
+      <input type="radio" value="Male" id="male" name="account" checked/>
+        <label for="male" class="radio" chec><strong>Male</strong></label>
+         <input type="radio" value="Female" id="female" name="account" />
+        <label for="female" class="radio"><strong>Female</strong></label>
+	</div>
+        <hr>
+        <label id="icon" for="user"><i class="fa fa-user"></i></label>
+        <input type="text" name="user" id="firstname" placeholder="First name">
+        <label id="icon" for="user"><i class="fa fa-user"></i></label>
+        <input type="text" name="user" id="lastname" placeholder="Last name">
+        <label id="icon" for="bday"><i class="fa fa-birthday-cake"></i></label>
+        <input type="text" id="calendar">
+        <label id="icon" for="province"><i class="fa fa-home"></i></label>
+        <select name="province" id="province">
+        </select>
+        <fieldset>
+        <img name="image" id="image" src="" width="60" height="60" alt="">  
+        <label id="out">Slogan :</label>
+        </fieldset>      
+        <a href="#" class="button" id="btnSubmit">Submit</a>
+        <a href="#" class="button" id="btnCancel">Cancel</a>
+      
+    </form>
+    
+    
+    </div>
+   
+    
+</body>
+</html>
