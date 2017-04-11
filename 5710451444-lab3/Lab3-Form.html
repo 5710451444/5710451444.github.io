@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>Lab3 Contact Form</title>
+    <link rel="stylesheet" type="text/css" href="style-form.css">
+    <script type="text/javascript" src="validate.js"></script>
+
+</head>
+<body onLoad="loadCookies()">
+<div class="form" id="myform">
+	<form name="contactForm">
+    <fieldset>
+    <h1>Contact Form</h1>
+    <p id="out"></p>
+    <label for="name">NAME</label>
+    <input type="text" id="firstname" name="First name" placeholder="First Name" onKeyUp="return validateFname()">
+    <div id="fNameErr" class="vad_err"></div>
+    <input type="text" id="lastname" name="Last name" placeholder="Last Name" onKeyUp="return validateLname()">
+    <div id="lNameErr" class="vad_err"></div>
+    <label for="address">ADDRESS</label>
+    <input type="text" id="housenumber" placeholder="House number" onKeyUp="return validateHnum()">
+    <div id="hNumErr" class="vad_err"></div>
+	<input type="text" id="street" placeholder="Street" onKeyUp="return validateStreet()">
+    <div id="stErr" class="vad_err"></div>
+    <input type="text" id="city" placeholder="City" onKeyUp="return validateCity()">
+    <div id="ctyErr" class="vad_err"></div>
+    <input type="text" id="province" placeholder="Province" onKeyUp="return validateProv()">
+    <div id="provinErr" class="vad_err"></div>
+    <input type="text" id="zipcode" placeholder="Zipcode" onKeyUp="return validateZip()">
+    <div id="zipErr" class="vad_err"></div>
+    <label for="phonenumber">PHONE NUMBER</label>
+    <input type="text" id="phonenum" placeholder="+662-XXX-XXX" onKeyUp="return validatePnum()">
+    <div id="pNumErr" class="vad_err"></div>
+    <label for="cellnumber">CELL PHONE NUMBER</label>
+    <input type="text" id="cellnum" placeholder="+66XX-XXX-XXXX" onKeyUp="return validateCnum()">
+    <div id="cNumErr" class="vad_err"></div>
+    <label>BIRTHDAY</label>
+    <fieldset>
+    	<select class="select-style" name="birthDay" id="bday">
+              <option value="">Day</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>   
+        </select>
+        <select class="select-style" name="birthMonth" id="bmonth">
+              <option value="">Month</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>   
+        </select>
+        <input type="text" class="year" id="birthyear" maxlength="4" placeholder="Year" onKeyUp="return validateByear()">
+        <div id="bdErr" class="vad_err"></div>
+	</fieldset>
+    <label for="idnum">CITIZENSHIP NUMBER</label>
+    <input type="text" id="idnumber" maxlength="13" placeholder="Citizenship Number" onKeyUp="return validateCitiId()">
+    <div id="idErr" class="vad_err"></div>
+    <label for="zodiacsign">ZODIAC SIGN</label>
+    <fieldset>
+    	<select class="select-style" name="zodsign" id="zosign">
+            <option value="">Zodiac Sign</option>
+            <option value="aries">Aries</option>
+            <option value="taurus">Taurus</option>
+            <option value="gemini">Gemini</option>
+            <option value="cancer">Cancer</option>
+            <option value="leo">Leo</option>
+            <option value="virgo">Virgo</option>
+            <option value="libra">Libra</option>
+            <option value="scorpio">Scorpio</option>
+            <option value="sagit">Sagittarius</option>
+            <option value="capri">Capricorn</option>
+            <option value="aquar">Aquarius</option>
+            <option value="pices">Pisces</option>
+    	</select>
+    </fieldset>
+    <div id="zodsErr" class="vad_err"></div>
+    <label for="zodiacyear">ZODIAC YEAR</label>
+    <fieldset>
+    	<select class="select-style" name="zodyear" id="zoyear">
+            <option value="">Zodiac Year</option>
+            <option value="rat">Rat</option>
+            <option value="ox">Ox</option>
+            <option value="tiger">Tiger</option>
+            <option value="rabbit">Rabbit</option>
+            <option value="dragon">Dragon</option>
+            <option value="snake">Snake</option>
+            <option value="horse">Horse</option>
+            <option value="sheep">Sheep</option>
+            <option value="monkey">Monkey</option>
+            <option value="rooster">Rooster</option>
+            <option value="dog">Dog</option>
+            <option value="pig">Pig</option>
+    	</select>
+    </fieldset>
+    <div id="zodyErr" class="vad_err"></div>
+    <label>BIRTH DAY OF WEEK</label>
+    <fieldset>
+    	<select class="select-style" name="bdayweek" id="dweek">
+    		<option value="">Day Of Week</option>
+    		<option value="mon">Monday</option>
+    		<option value="tue">Tuesday</option>
+    		<option value="wed">Wednesday</option>
+    		<option value="thu">Thursday</option>
+    		<option value="fri">Friday</option>
+    		<option value="sat">Saturday</option>
+    		<option value="sun">Sunday</option> 
+    	</select>
+	</fieldset>
+    <div id="daywErr" class="vad_err"></div>    
+    
+    </fieldset>
+    <fieldset>
+    <input type="reset" class="btn" id="btncancel" value="Cancel"></button>
+    </fieldset>
+</form>
+    
+     <fieldset>
+        <button class="button" id="btnsave" onClick="return validateForm()">Save</button>
+        
+        <button class="button" id="btnsubmit" onClick="return validateForm()">Submit</button>
+        
+	</fieldset>
+    
+<div class="table" id="mytable">
+	<table id="contable">
+    	<thead>
+        	<tr>
+            	<th>First Name</th>
+                <th>Last Name</th>
+                <th>House Number</th>
+                <th>Street</th>
+                <th>City</th>
+                <th>Province</th>
+                <th>Zipcode</th>
+                <th>Phone Number</th>
+                <th>Cell Phone Number</th>
+                <th>Birth Day</th>
+                <th>Birth Month</th>
+                <th>Birth Year</th>
+                <th>Citizenship Number</th>
+                <th>Zodiac Sign</th>
+                <th>Zodiac Year</th>
+                <th>Birth Day of Week</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        </tbody>
+    </table>
+</div>    
+
+</body>
+</html>
+
